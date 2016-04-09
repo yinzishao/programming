@@ -1,6 +1,8 @@
 # -*- coding:utf-8 -*-
 __author__ = 'yinzishao'
-
+"""
+一开始n=0，输出也是0.
+"""
 class Solution:
     def Fibonacci(self, n):
         # write code here

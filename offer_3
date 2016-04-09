@@ -34,4 +34,27 @@ public:
         return value;
 
     }
+//    vector<int> printListFromTailToHead(struct ListNode* head) {
+//        vector<int> value;
+//
+//        struct ListNode* pNode = head;
+//        struct ListNode* pPrev = NULL;
+//        while(pNode!=NULL){
+//            struct ListNode* pNext = pNode->next;
+//            if(pNext == NULL){
+//                pNode->next= pPrev;
+//                break;
+//            }
+//            pNode->next= pPrev;
+//            pPrev = pNode;
+//            pNode = pNext;
+//        }
+//        while(pNode!=NULL){
+//            value.push_back(pNode->val);
+//            pNode=pNode->next;
+//
+//        }
+//        return value;
+//
+//    }
 };
