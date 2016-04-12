@@ -8,18 +8,74 @@
 但4,3,5,1,2就不可能是该压栈序列的弹出序列。
 
 """
+# class Solution:
+#     def IsPopOrder(self, pushV, popV):
+#         # write code here
+#
+#         i=0
+#         tempV=[]
+#         self.IsPopOrder(pushV,popV,tempV)
+#
+#     def IsPopOrder(self, pushV, popV,tempV):
+#         i=0
+#         if  tempV == [] or popV[0] != tempV[0] :
+#
+#             while i < len(pushV):
+#                 if pushV[i] != popV[0]:
+#                     tempV.append(pushV[i])
+#                     i+=1
+#                 else:
+#                     self.IsPopOrder(pushV[i+1:],popV[1:],tempV)
+#         else:
+#             tempV=tempV[0:-2]
+#             self.IsPopOrder(pushV,popV[1:],tempV)
+
+
 class Solution:
     def IsPopOrder(self, pushV, popV):
         # write code here
+        if pushV == [] and popV == []:
+            return False
 
-        i=0
-        self.IsPopOrder(pushV,popV,i)
+        tempV =[]
+        while popV !=[]:
+            first_of_popV = popV[0]
+            del popV[0]
 
-    def IsPopOrder(self, pushV, popV,i):
-        tempV=[]
-        while i < len(pushV):
-            if pushV[i] != popV[0]:
-                tempV.append(pushV[i])
-                i+=1
-            else:
-                pass
+            if tempV !=[]:
+                if tempV[-1] == first_of_popV:
+                    flag = True
+                    del tempV[-1]
+                    continue
+            if pushV == [] and popV !=[] :
+                flag = False
+                break
+            for i in pushV:
+                if i != first_of_popV:
+                    flag = False
+                    tempV.append(i)
+                else:
+                    flag = True
+                    pushV = pushV[pushV.index(i)+1:]
+                    break
+        return flag
+
+print Solution().IsPopOrder([1],[2])
+
+"""C++
+class Solution {
+public:
+    bool IsPopOrder(vector<int> pushV,vector<int> popV) {
+        if(pushV.size() == 0) return false;
+        vector<int> stack;
+        for(int i = 0,j = 0 ;i < pushV.size();){
+            stack.push_back(pushV[i++]);
+            while(j < popV.size() && stack.back() == popV[j]){
+                stack.pop_back();
+                j++;
+            }
+        }
+        return stack.empty();
+    }
+};
+"""
