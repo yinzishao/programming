@@ -6,12 +6,15 @@
 例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。如果不存在则输出0。
 
 """
+# -*- coding:utf-8 -*-
 class Solution:
     result =0
     def MoreThanHalfNum_Solution(self, numbers):
         # write code here
-        if numbers == None:
-            return []
+        if numbers in [None,[]]:
+            return 0
+        if len(numbers) ==1:
+            return numbers[0]
         return self.search(numbers,0,len(numbers)-1)
 
 
@@ -24,7 +27,14 @@ class Solution:
                 p = self.Pation(number,start,p-1)
             else:
                 p = self.Pation(number,p+1,end)
-        return number[mid]
+        result = number[mid]
+        if self.CheckMoreThanHalf(number,result):
+            result=0
+        return result
+    def CheckMoreThanHalf(self,number,result):
+        if number.count(result)*2<len(number):
+            return True
+        return False
 
     def Pation(self,list,start,end):
         s = start
