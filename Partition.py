@@ -24,6 +24,12 @@
 
 [0,1]
 
+我的思路：
+先把所有专家的评测集合，变成一个数组[[1,1,1,1],[0,0,0,0],[1,0,1,1]]变成[1,-1,1,1]
+-1 表示预测A的次数 为1次，+1为预测B的次数为1
+然后从左到右算出每个划分情况的A错误次数(注意4块地有5种情况，最左边A错误为0)
+然后从右到左算出每个划分情况的B错误次数（最右边B错误为0）
+加起来最小的就是答案
 
 """
 __author__ = 'yinzishao'
@@ -35,7 +41,7 @@ class Partition:
         # write code here
         # return [0, 1]
         res = [0 for i in range(n)]
-        print res
+        # print res
         for i in land:
             for index,value in enumerate(i):
                 if value ==1:
@@ -43,17 +49,26 @@ class Partition:
                 else:
                     res[index]-=1
         # return res
-        a_cuo=[0 for i in range(len(res))]
-        b_cuo=[0 for i in range(len(res))]
+        # print res
+        a_cuo=[0 for i in range(len(res)+1)]
+        b_cuo=[0 for i in range(len(res)+1)]
         a_cuo_num=0
         b_cuo_num=0
         for i,v in enumerate(res):
             if v>0:
                 a_cuo_num+=v
-                a_cuo[i]=a_cuo_num
+            a_cuo[i+1]=a_cuo_num
         for i,v in enumerate(res[::-1]):
             if v<0:
-                b_cuo_num+=v
-                b_cuo[i]=b_cuo_num
+                b_cuo_num-=v
+            b_cuo[i+1]=b_cuo_num
+        b_cuo.reverse()
+        min_error=a_cuo[0]+b_cuo[0]
+        min_error_index=0
+        for i in range(len(res)+1):
+            if a_cuo[i]+b_cuo[i]<min_error:
+                min_error=a_cuo[i]+b_cuo[i]
+                min_error_index=i
 
+        return [min_error_index,min_error_index+1]
 print Partition().getPartition([[1,1,1,1],[0,0,0,0],[1,0,1,1]],4,3)
