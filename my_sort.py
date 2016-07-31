@@ -21,6 +21,9 @@ class Sort():
             end = i-1
             while start <=end:
                 mid = (start+end)/2
+                if(array[mid]==temp):
+                    start = mid
+                    break
                 if(array[mid]<temp):
                     start = mid+1
                 else:
@@ -30,8 +33,9 @@ class Sort():
         return array
     #希尔排序(增量的选择没有实现)
     def shell_sort(self,array,dk=[5,3,1]):
+        print "============shell's sort==============="
         for i in dk:
-            for l in range(i-1,len(array)):
+            for l in range(i,len(array)):
                 m = l
                 while m-i >=0 and array[m]<array[m-i]:
                     array[m-i],array[m]=array[m],array[m-i]
