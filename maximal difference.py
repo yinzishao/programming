@@ -21,7 +21,7 @@ class LongestDistance:
 
 
     #     正确答案o(n)：循环一次与最小的比较选出最大差值
-    def getDis(self,A,n):
+    def getDis2(self,A,n):
         dis = 0
         min = A[0]
         for i in range(1,n):
@@ -33,5 +33,5 @@ class LongestDistance:
 
 
 if __name__ == "__main__":
-    a = LongestDistance().getDis([1,2],2)
+    a = LongestDistance().getDis2([2,7,1,2],4)
     print a

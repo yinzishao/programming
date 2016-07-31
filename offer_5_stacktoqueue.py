@@ -18,9 +18,9 @@ class Solution:
            # self.stack_b.extend(self.stack_a[::-1])
            self.stack_a.reverse()
            self.stack_b.extend(self.stack_a)
-
-        a= self.stack_b[len(self.stack_b)-1]
-        self.stack_b.pop(len(self.stack_b)-1)
+        # a= self.stack_b[len(self.stack_b)-1]
+        # self.stack_b.pop(len(self.stack_b)-1)
+        a = self.stack_b.pop()
         return a
         # return xx
         # a = self.l[0]
@@ -30,6 +30,12 @@ class Solution:
 
 s = Solution()
 s.push(1)
+s.push(2)
+s.push(3)
+s.push(4)
+s.push(5)
+print s.pop()
+print s.pop()
 print s.pop()
 
 """C++代码

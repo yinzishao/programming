@@ -21,7 +21,7 @@ class Solution():
     def trans(self,str,l):
         if str == None:
             return None
-        str_list=[i for i in str]
+        str_list=list(str)  # ==  str_list=[i for i in str]
         start,end=0,0
         while end <l:
             if str_list[end].islower():

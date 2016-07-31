@@ -54,13 +54,15 @@ class Solution:
                 if i != first_of_popV:
                     flag = False
                     tempV.append(i)
+                    if i == pushV[-1]:  #修改
+                        return False
                 else:
                     flag = True
                     pushV = pushV[pushV.index(i)+1:]
                     break
         return flag
 
-print Solution().IsPopOrder([1],[2])
+print Solution().IsPopOrder([1,2,3,4,5],[4,5,3,2,1])
 
 """C++
 class Solution {
